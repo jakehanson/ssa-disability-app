@@ -43,9 +43,9 @@ export default function Button({
       })
     : null;
 
-const componentProps = href
+  const componentProps = href
     ? { href, prefetch: false }
-    : { type };
+    : { type, suppressHydrationWarning: true };
 
   return (
     <Component

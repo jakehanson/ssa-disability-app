@@ -1,103 +1,141 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  BadgeIcon,
+  Button,
+  Card,
+  SectionHeader,
+} from "./components/ui";
 
-export default function Home() {
+const CheckIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M5 13l4 4L19 7"
+    />
+  </svg>
+);
+
+const ReportIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M9 5a3 3 0 006 0M12 11h4M12 15h4M8 11h.01M8 15h.01"
+    />
+  </svg>
+);
+
+const CompassIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16.24 7.76l-4.24 1.06-1.06 4.24 4.24-1.06 1.06-4.24z"
+    />
+  </svg>
+);
+
+const ArrowIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M13 7l5 5m0 0l-5 5m5-5H6"
+    />
+  </svg>
+);
+
+export default function LandingPage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen bg-gradient-to-br from-[color:var(--color-primary-50)] to-[color:var(--color-primary-100)] py-[var(--space-section)]">
+      <div className="app-container text-center">
+        <section className="section-stack">
+          <SectionHeader
+            eyebrow="Social Security Disability Support"
+            title="Start your free disability assessment"
+            lead="Understand your eligibility and get personalized guidance on the next steps for Social Security Disability benefits."
+            align="center"
+          />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <div className="flex justify-center">
+            <Button
+              href="/assessment"
+              size="lg"
+              icon={<ArrowIcon />}
+              iconPosition="right"
+            >
+              Start My Free Assessment
+            </Button>
+          </div>
+
+          <ul className="flex flex-wrap items-center justify-center gap-6 text-sm text-[color:var(--color-text-muted)]">
+            {["100% Free", "Confidential & secure", "Takes 5–10 minutes"].map((item) => (
+              <li key={item} className="flex items-center gap-2">
+                <CheckIcon className="h-5 w-5 text-[color:var(--color-success-500)]" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-16">
+          <Card className="section-stack">
+            <div className="flex flex-col gap-3 text-left">
+              <h3 className="text-xl font-semibold text-[color:var(--color-text-primary)]">
+                What you’ll receive
+              </h3>
+              <p className="text-[color:var(--color-text-secondary)]">
+                Discover actionable insights tailored to your Social Security Disability case.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  title: "Eligibility Check",
+                  copy: "Understand if you qualify for SSDI or SSI benefits.",
+                  icon: CheckIcon,
+                  tone: "success",
+                },
+                {
+                  title: "Personalized Report",
+                  copy: "Receive a breakdown of what matters most for your situation.",
+                  icon: ReportIcon,
+                  tone: "info",
+                },
+                {
+                  title: "Next Steps",
+                  copy: "Get clear guidance on how to move forward confidently.",
+                  icon: CompassIcon,
+                  tone: "primary",
+                },
+              ].map(({ title, copy, icon, tone }) => (
+                <div key={title} className="text-left">
+                  <BadgeIcon
+                    icon={icon}
+                    tone={tone}
+                    className="mb-4 mx-auto md:mx-0 text-[color:var(--color-primary-600)]"
+                  />
+                  <h4 className="text-lg font-semibold text-[color:var(--color-text-primary)]">
+                    {title}
+                  </h4>
+                  <p className="mt-2 text-[color:var(--color-text-secondary)]">{copy}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </section>
+      </div>
+    </main>
   );
 }

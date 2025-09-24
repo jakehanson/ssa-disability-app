@@ -39,6 +39,74 @@ const ConsultationIcon = (props) => (
   </svg>
 );
 
+const CalendarCheckIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M8 3v2m8-2v2M5 8h14"
+    />
+    <rect
+      x="4"
+      y="5"
+      width="16"
+      height="15"
+      rx="2"
+      ry="2"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M10 13l2 2 4-4"
+    />
+  </svg>
+);
+
+const ExpertiseIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M12 6l7 4-7 4-7-4 7-4z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M5 14l7 4 7-4"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M5 10l7 4 7-4"
+    />
+  </svg>
+);
+
+const ShieldCheckIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M12 3l7 3v5c0 4.418-3.134 8.84-7 10-3.866-1.16-7-5.582-7-10V6l7-3z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M9.5 12.5l2 2 3-3"
+    />
+  </svg>
+);
+
 const lawyers = [
   {
     name: "Johnson & Associates Law Firm",
@@ -153,18 +221,27 @@ export default function LawyersPage() {
             />
             <div className="flex flex-wrap justify-center gap-4 text-sm text-[color:var(--color-primary-700)]">
               {[
-                "Free consultations available",
-                "Experienced disability attorneys",
-                "No upfront fees required",
-              ].map((item) => (
-                <span key={item} className="flex items-center gap-2">
+                {
+                  label: "Free consultations available",
+                  icon: CalendarCheckIcon,
+                },
+                {
+                  label: "Experienced disability attorneys",
+                  icon: ExpertiseIcon,
+                },
+                {
+                  label: "No upfront fees required",
+                  icon: ShieldCheckIcon,
+                },
+              ].map(({ label, icon }) => (
+                <span key={label} className="flex items-center gap-2">
                   <BadgeIcon
-                    icon={ConsultationIcon}
+                    icon={icon}
                     tone="primary"
                     size="sm"
                     className="h-8 w-8 text-[color:var(--color-primary-600)]"
                   />
-                  {item}
+                  {label}
                 </span>
               ))}
             </div>

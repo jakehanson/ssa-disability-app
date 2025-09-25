@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
 import { Button, Card, InputField, MessageBubble } from "../components/ui";
 
 const INITIAL_MESSAGES = [
@@ -133,13 +132,7 @@ export default function AssessmentPage() {
               <MessageBubble
                 key={message.id}
                 variant={message.variant}
-                message={
-                  message.variant === "assistant" ? (
-                    <ReactMarkdown>{message.message}</ReactMarkdown>
-                  ) : (
-                    message.message
-                  )
-                }
+                message={message.message}
                 timestamp={message.timestamp}
                 name={message.name}
                 className={message.variant === "user" ? "ml-auto" : undefined}
@@ -160,6 +153,7 @@ export default function AssessmentPage() {
             <form
               className="flex flex-col gap-4 md:flex-row md:items-end"
               onSubmit={handleSubmit}
+              suppressHydrationWarning
             >
               <InputField
                 id="message"

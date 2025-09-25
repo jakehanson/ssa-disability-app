@@ -21,6 +21,7 @@ export default function InputField({
         </label>
       ) : null}
       <input
+        suppressHydrationWarning
         className={`w-full rounded-[var(--radius)] border border-[color:var(--color-border)] bg-white px-4 py-3 text-sm text-[color:var(--color-text-primary)] shadow-xs outline-none transition focus:border-transparent focus:ring-2 focus:ring-[color:var(--color-primary-300)] ${inputClassName}`.trim()}
         aria-describedby={describedBy.join(" ") || undefined}
         aria-invalid={Boolean(error)}

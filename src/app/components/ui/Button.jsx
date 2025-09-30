@@ -8,7 +8,7 @@ const baseClasses =
 
 const variantClasses = {
   primary:
-    "bg-[color:var(--color-primary-600)] text-white hover:bg-[color:var(--color-primary-700)] focus-visible:outline-[color:var(--color-primary-500)] shadow-sm",
+    "bg-[color:var(--color-primary-400)] text-[color:var(--color-text-primary)] hover:bg-[color:var(--color-primary-500)] focus-visible:outline-[color:var(--color-primary-500)] shadow-sm",
   secondary:
     "bg-white text-[color:var(--color-text-primary)] border border-[color:var(--color-border)] hover:border-[color:var(--color-primary-200)] hover:text-[color:var(--color-primary-700)] focus-visible:outline-[color:var(--color-primary-400)] shadow-sm",
   subtle:

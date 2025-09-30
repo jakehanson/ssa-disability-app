@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
 export default function MessageBubble({
@@ -12,9 +13,19 @@ export default function MessageBubble({
   return (
     <div className={`flex gap-3 ${isAssistant ? "flex-row" : "flex-row-reverse"}`.trim()}>
       <div
-        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${isAssistant ? "bg-[color:var(--color-primary-600)] text-white" : "bg-[color:var(--color-neutral-200)] text-[color:var(--color-text-primary)]"}`.trim()}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
       >
-        {isAssistant ? "AI" : "You"}
+        {isAssistant ? (
+          <Image
+            src="/chat-avatar.png"
+            alt="Assistant Avatar"
+            width={24}
+            height={24}
+            priority
+          />
+        ) : (
+          "You"
+        )}
       </div>
       <div className={`flex flex-col items-start ${isAssistant ? "" : "items-end"}`}>
         <div

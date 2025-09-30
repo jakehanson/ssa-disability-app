@@ -8,23 +8,7 @@ const INITIAL_MESSAGES = [
     id: "assistant-1",
     variant: "assistant",
     message:
-      "Welcome! I'm here to help you assess your eligibility for Social Security Disability benefits. This assessment will take about 5-10 minutes and is completely confidential.",
-    timestamp: "Just now",
-    name: "Assistant",
-  },
-  {
-    id: "user-1",
-    variant: "user",
-    message:
-      "Hi, I'd like to start the assessment. I've been having some health issues that are affecting my ability to work.",
-    timestamp: "Just now",
-    name: "You",
-  },
-  {
-    id: "assistant-2",
-    variant: "assistant",
-    message:
-      "I understand. Let's start with some basic information. First, can you tell me your age?",
+      "Hi there! I'm here to help you understand your potential eligibility for Social Security disability benefits.\n\nPlease describe what health challenges are making it difficult for you to work.",
     timestamp: "Just now",
     name: "Assistant",
   },
@@ -157,13 +141,12 @@ export default function AssessmentPage() {
             >
               <InputField
                 id="message"
-                label="Your message"
                 placeholder="Type your response here..."
                 className="flex-1"
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
               />
-              <Button type="submit" size="md" className="md:self-stretch">
+              <Button type="submit" size="md" className="w-full self-end md:w-auto md:self-end">
                 Send
               </Button>
             </form>

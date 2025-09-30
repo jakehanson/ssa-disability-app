@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { formatDistanceToNow } from "date-fns";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export default function MessageBubble({
@@ -9,6 +13,25 @@ export default function MessageBubble({
   className = "",
 }) {
   const isAssistant = variant === "assistant";
+  const [relativeTime, setRelativeTime] = useState(() =>
+    timestamp instanceof Date ? formatDistanceToNow(timestamp, { addSuffix: true }) : timestamp
+  );
+
+  useEffect(() => {
+    if (!(timestamp instanceof Date)) {
+      setRelativeTime(timestamp);
+      return;
+    }
+
+    const updateRelativeTime = () => {
+      setRelativeTime(formatDistanceToNow(timestamp, { addSuffix: true }));
+    };
+
+    updateRelativeTime();
+
+    const interval = setInterval(updateRelativeTime, 30_000);
+    return () => clearInterval(interval);
+  }, [timestamp]);
 
   return (
     <div className={`flex gap-3 ${isAssistant ? "flex-row" : "flex-row-reverse"}`.trim()}>
@@ -19,8 +42,8 @@ export default function MessageBubble({
           <Image
             src="/chat-avatar.png"
             alt="Assistant Avatar"
-            width={24}
-            height={24}
+            width={36}
+            height={36}
             priority
           />
         ) : (
@@ -41,9 +64,9 @@ export default function MessageBubble({
             <div className="text-pretty leading-6">{message}</div>
           )}
         </div>
-        {(name || timestamp) && (
+        {(name || relativeTime) && (
           <p className={`mt-1 text-xs text-[color:var(--color-text-muted)] ${isAssistant ? "" : "text-right"}`}>
-            {[name, timestamp].filter(Boolean).join(" • ")}
+            {[name, relativeTime].filter(Boolean).join(" • ")}
           </p>
         )}
       </div>

@@ -9,7 +9,7 @@ const INITIAL_MESSAGES = [
     variant: "assistant",
     message:
       "Hi there! I'm here to help you understand your potential eligibility for Social Security disability benefits.\n\nPlease describe what health challenges are making it difficult for you to work.",
-    timestamp: "Just now",
+    timestamp: new Date(),
     name: "Assistant",
   },
 ];
@@ -34,7 +34,7 @@ export default function AssessmentPage() {
       id: createMessageId("user"),
       variant: "user",
       message: trimmedInput,
-      timestamp: "Just now",
+      timestamp: new Date(),
       name: "You",
     };
 
@@ -66,7 +66,7 @@ export default function AssessmentPage() {
         id: createMessageId("assistant"),
         variant: "assistant",
         message: replyText,
-        timestamp: "Just now",
+        timestamp: new Date(),
         name: "Assistant",
       };
 
@@ -78,7 +78,7 @@ export default function AssessmentPage() {
         id: createMessageId("assistant-error"),
         variant: "assistant",
         message: "Sorry, something went wrong. Please try again.",
-        timestamp: "Just now",
+        timestamp: new Date(),
         name: "Assistant",
       };
 
@@ -127,13 +127,13 @@ export default function AssessmentPage() {
                 key="assistant-loading"
                 variant="assistant"
                 message="typing..."
-                timestamp="Just now"
+                timestamp={new Date()}
                 name="Assistant"
               />
             )}
           </div>
 
-          <div className="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface)] py-5">
+          <div className="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] px-6 py-6">
             <form
               className="flex flex-col gap-4 md:flex-row md:items-end"
               onSubmit={handleSubmit}
@@ -143,6 +143,7 @@ export default function AssessmentPage() {
                 id="message"
                 placeholder="Type your response here..."
                 className="flex-1"
+                inputClassName="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-[var(--radius-lg)] shadow-xs"
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
               />

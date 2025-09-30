@@ -4,41 +4,73 @@ import { useState } from "react";
 
 import { BadgeIcon, Button, Card, InputField, SectionHeader } from "../components/ui";
 
-const LocationIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+const StarIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden
+    {...props}
+  >
     <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M12 11a3 3 0 100-6 3 3 0 000 6z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M19.5 11c0 7-7.5 11-7.5 11S4.5 18 4.5 11a7.5 7.5 0 1115 0z"
-    />
-  </svg>
-);
-
-const ExperienceIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M3 5h18M7 5v14m10-14v14M5 19h14"
+      fillRule="evenodd"
+      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.007z"
+      clipRule="evenodd"
     />
   </svg>
 );
 
-const ConsultationIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden {...props}>
+const LocationPinIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="currentColor"
+    aria-hidden
+    {...props}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth="2"
-      d="M12 11c1.657 0 3-.895 3-2s-1.343-2-3-2-3 .895-3 2 1.343 2 3 2zm0 0v1m0 4h.01m-6-1a6 6 0 1112 0v2H6v-2z"
+      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+    />
+  </svg>
+);
+
+const PhoneIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="currentColor"
+    aria-hidden
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+    />
+  </svg>
+);
+
+const GlobeIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="currentColor"
+    aria-hidden
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
     />
   </svg>
 );
@@ -244,14 +276,118 @@ export default function LawyersPage() {
     return null;
   }
 
-  function getProfileLink(lawFirm) {
-    return (
-      lawFirm?.profile_url ??
-      lawFirm?.profile_link ??
+  function getStarRating(lawFirm) {
+    const ratingValue =
+      lawFirm?.star_rating ??
+      lawFirm?.rating ??
+      lawFirm?.average_rating ??
+      null;
+
+    const parsed = typeof ratingValue === "string" ? parseFloat(ratingValue) : ratingValue;
+
+    if (typeof parsed === "number" && Number.isFinite(parsed)) {
+      return Math.max(0, Math.min(5, parsed));
+    }
+
+    return null;
+  }
+
+  function getReviewCount(lawFirm) {
+    const reviewValue =
+      lawFirm?.review_count ??
+      lawFirm?.reviews ??
+      lawFirm?.total_reviews ??
+      lawFirm?.rating_count ??
+      null;
+
+    const parsed = typeof reviewValue === "string" ? parseInt(reviewValue, 10) : reviewValue;
+
+    if (typeof parsed === "number" && Number.isInteger(parsed) && parsed >= 0) {
+      return parsed;
+    }
+
+    return null;
+  }
+
+  function getBusinessDescription(lawFirm) {
+    const description =
+      lawFirm?.business_description ??
+      lawFirm?.description ??
+      lawFirm?.about ??
+      null;
+
+    if (typeof description === "string" && description.trim()) {
+      return description.trim();
+    }
+
+    return null;
+  }
+
+  function getPhoneNumber(lawFirm) {
+    const phone =
+      lawFirm?.phone_number ??
+      lawFirm?.phone ??
+      lawFirm?.telephone ??
+      lawFirm?.phoneNumber ??
+      null;
+
+    if (typeof phone === "string" && phone.trim()) {
+      return phone.trim();
+    }
+
+    return null;
+  }
+
+  function formatPhoneDisplay(phone) {
+    if (!phone) return null;
+
+    const digits = phone.replace(/[^0-9]/g, "");
+
+    if (digits.length === 10) {
+      return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    }
+
+    if (digits.length === 11 && digits.startsWith("1")) {
+      return `+1 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+    }
+
+    return phone;
+  }
+
+  function formatPhoneDial(phone) {
+    if (!phone) return null;
+    const digits = phone.replace(/[^0-9+]/g, "");
+    return digits ? (digits.startsWith("+") ? digits : `+1${digits}`) : null;
+  }
+
+  function getWebsiteUrl(lawFirm) {
+    const website =
       lawFirm?.website ??
+      lawFirm?.website_url ??
       lawFirm?.url ??
-      null
-    );
+      lawFirm?.profile_url ??
+      null;
+
+    if (typeof website === "string" && website.trim()) {
+      return website.trim();
+    }
+
+    return null;
+  }
+
+  function getMapsUrl(lawFirm) {
+    const mapsUrl =
+      lawFirm?.maps_url ??
+      lawFirm?.google_maps_url ??
+      lawFirm?.directions_url ??
+      lawFirm?.maps_link ??
+      null;
+
+    if (typeof mapsUrl === "string" && mapsUrl.trim()) {
+      return mapsUrl.trim();
+    }
+
+    return null;
   }
 
   const statusDescription = (() => {
@@ -341,31 +477,17 @@ export default function LawyersPage() {
                 "Law Firm";
 
               const addressLines = getAddressLines(lawFirm);
+              const distanceText = getDistanceText(lawFirm);
+              const rating = getStarRating(lawFirm);
+              const reviewCount = getReviewCount(lawFirm);
+              const description = getBusinessDescription(lawFirm);
+              const phoneRaw = getPhoneNumber(lawFirm);
+              const phoneDisplay = formatPhoneDisplay(phoneRaw);
+              const phoneDial = formatPhoneDial(phoneRaw);
+              const websiteUrl = getWebsiteUrl(lawFirm);
+              const mapsUrl = getMapsUrl(lawFirm);
               const experienceText = getExperienceText(lawFirm);
               const offerText = getOfferText(lawFirm);
-              const distanceText = getDistanceText(lawFirm);
-              const profileLink = getProfileLink(lawFirm);
-
-              const metaItems = [
-                experienceText
-                  ? {
-                      icon: ExperienceIcon,
-                      text: experienceText,
-                    }
-                  : null,
-                offerText
-                  ? {
-                      icon: ConsultationIcon,
-                      text: offerText,
-                    }
-                  : null,
-                distanceText
-                  ? {
-                      icon: LocationIcon,
-                      text: distanceText,
-                    }
-                  : null,
-              ].filter(Boolean);
 
               return (
                 <Card
@@ -374,37 +496,119 @@ export default function LawyersPage() {
                   elevated
                   className="flex h-full"
                 >
-                  <div className="section-stack text-left flex-1">
-                    <div>
-                      <h3 className="text-xl font-semibold text-[color:var(--color-text-primary)]">
-                        {name}
-                      </h3>
-                      <div className="mt-3 flex items-start gap-3 text-sm text-[color:var(--color-text-secondary)]">
-                        <LocationIcon className="mt-1 h-4 w-4 text-[color:var(--color-text-muted)]" />
-                        <div className="space-y-1">
-                          {addressLines.map((line) => (
-                            <p key={line}>{line}</p>
-                          ))}
+                  <div className="flex w-full flex-col justify-between gap-6 text-left">
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="space-y-2">
+                          <h3 className="text-xl font-semibold text-[color:var(--color-text-primary)]">
+                            {name}
+                          </h3>
+                          {rating ? (
+                            <div className="flex items-center gap-2 text-sm">
+                              <span className="flex items-center gap-1 font-semibold text-[color:var(--color-warning-500)]">
+                                <StarIcon className="h-5 w-5" />
+                                {rating.toFixed(1)}
+                              </span>
+                              {reviewCount !== null ? (
+                                <span className="text-[color:var(--color-text-secondary)]">
+                                  ({reviewCount.toLocaleString()} reviews)
+                                </span>
+                              ) : null}
+                            </div>
+                          ) : null}
+
+                          {experienceText || offerText ? (
+                            <div className="flex flex-wrap gap-2 text-xs text-[color:var(--color-text-muted)]">
+                              {experienceText ? (
+                                <span className="rounded-full bg-[color:var(--color-surface-alt)] px-3 py-1">
+                                  {experienceText}
+                                </span>
+                              ) : null}
+                              {offerText ? (
+                                <span className="rounded-full bg-[color:var(--color-surface-alt)] px-3 py-1">
+                                  {offerText}
+                                </span>
+                              ) : null}
+                            </div>
+                          ) : null}
                         </div>
+
+                        {distanceText ? (
+                          <span className="rounded-full bg-[color:var(--color-primary-50)] px-3 py-1 text-xs font-medium text-[color:var(--color-primary-700)]">
+                            {distanceText}
+                          </span>
+                        ) : null}
+                      </div>
+
+                      {description ? (
+                        <p className="text-sm leading-relaxed text-[color:var(--color-text-secondary)]">
+                          {description}
+                        </p>
+                      ) : null}
+
+                      <div className="space-y-3 text-sm text-[color:var(--color-text-secondary)]">
+                        <div className="flex items-start gap-2">
+                          <LocationPinIcon className="mt-0.5 h-5 w-5 text-[color:var(--color-primary-500)]" />
+                          <div className="space-y-1">
+                            {addressLines.map((line) => (
+                              <p key={line}>{line}</p>
+                            ))}
+                          </div>
+                        </div>
+
+                        {phoneDisplay && phoneDial ? (
+                          <div className="flex items-center gap-2">
+                            <PhoneIcon className="h-5 w-5 text-[color:var(--color-primary-500)]" />
+                            <a
+                              href={`tel:${phoneDial}`}
+                              className="font-medium text-[color:var(--color-primary-700)] hover:underline"
+                            >
+                              {phoneDisplay}
+                            </a>
+                          </div>
+                        ) : null}
                       </div>
                     </div>
 
-                    {metaItems.length > 0 ? (
-                      <dl className="flex flex-wrap gap-4 text-sm text-[color:var(--color-text-muted)]">
-                        {metaItems.map(({ icon: Icon, text }) => (
-                          <div key={text} className="flex items-center gap-2">
-                            <Icon className="h-4 w-4" />
-                            <span>{text}</span>
-                          </div>
-                        ))}
-                      </dl>
-                    ) : null}
+                    <div className="flex flex-wrap gap-3">
+                      {phoneDial ? (
+                        <Button
+                          size="md"
+                          href={`tel:${phoneDial}`}
+                          variant="secondary"
+                          className="min-w-[120px] flex-1 justify-center"
+                        >
+                          Call
+                        </Button>
+                      ) : null}
 
-                    {profileLink ? (
-                      <Button size="md" className="w-full" href={profileLink}>
-                        View profile
-                      </Button>
-                    ) : null}
+                      {websiteUrl ? (
+                        <Button
+                          size="md"
+                          href={websiteUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          icon={<GlobeIcon className="h-5 w-5" />}
+                          iconPosition="left"
+                          className="min-w-[120px] flex-1 justify-center"
+                        >
+                          Website
+                        </Button>
+                      ) : null}
+
+                      {mapsUrl ? (
+                        <Button
+                          size="md"
+                          href={mapsUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          variant="secondary"
+                          className="min-w-[120px] flex-1 justify-center"
+                        >
+                          Directions
+                        </Button>
+                      ) : null}
+                    </div>
                   </div>
                 </Card>
               );
@@ -428,30 +632,33 @@ export default function LawyersPage() {
               className="mb-6"
             />
             <div className="flex flex-wrap justify-center gap-4 text-sm text-[color:var(--color-primary-700)]">
-              {[
-                {
-                  label: "Free consultations available",
-                  icon: CalendarCheckIcon,
-                },
-                {
-                  label: "Experienced disability attorneys",
-                  icon: ExpertiseIcon,
-                },
-                {
-                  label: "No upfront fees required",
-                  icon: ShieldCheckIcon,
-                },
-              ].map(({ label, icon }) => (
-                <span key={label} className="flex items-center gap-2">
-                  <BadgeIcon
-                    icon={icon}
-                    tone="primary"
-                    size="sm"
-                    className="h-8 w-8 text-[color:var(--color-primary-600)]"
-                  />
-                  {label}
-                </span>
-              ))}
+              <span className="flex items-center gap-2">
+                <BadgeIcon
+                  icon={CalendarCheckIcon}
+                  tone="primary"
+                  size="sm"
+                  className="h-8 w-8 text-[color:var(--color-primary-600)]"
+                />
+                Free consultations available
+              </span>
+              <span className="flex items-center gap-2">
+                <BadgeIcon
+                  icon={ExpertiseIcon}
+                  tone="primary"
+                  size="sm"
+                  className="h-8 w-8 text-[color:var(--color-primary-600)]"
+                />
+                Experienced disability attorneys
+              </span>
+              <span className="flex items-center gap-2">
+                <BadgeIcon
+                  icon={ShieldCheckIcon}
+                  tone="primary"
+                  size="sm"
+                  className="h-8 w-8 text-[color:var(--color-primary-600)]"
+                />
+                No upfront fees required
+              </span>
             </div>
           </Card>
         </div>

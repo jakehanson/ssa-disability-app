@@ -90,11 +90,31 @@ export async function POST(request) {
       );
     }
 
+    const normalizedResults = (data ?? []).map((firm) => ({
+      ...firm,
+      star_rating: firm?.star_rating ?? firm?.rating ?? null,
+      review_count: firm?.review_count ?? firm?.reviews ?? firm?.rating_count ?? null,
+      business_description:
+        firm?.business_description ??
+        firm?.description ??
+        firm?.about ??
+        firm?.summary ??
+        null,
+      phone_number:
+        firm?.phone_number ??
+        firm?.phone ??
+        firm?.telephone ??
+        firm?.phoneNumber ??
+        null,
+      website: firm?.website ?? firm?.website_url ?? firm?.url ?? null,
+      maps_url: firm?.maps_url ?? firm?.google_maps_url ?? firm?.directions_url ?? null,
+    }));
+
     return NextResponse.json({
       query: searchQuery.trim(),
       center: coordinates,
       radiusMiles: RADIUS_MILES,
-      results: data ?? [],
+      results: normalizedResults,
     });
   } catch (error) {
     console.error("Unexpected error in /api/lawyers:", error);

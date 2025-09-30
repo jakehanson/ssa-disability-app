@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useState } from "react";
 import { Button, Card, InputField, MessageBubble } from "../components/ui";
 
@@ -96,16 +97,24 @@ export default function AssessmentPage() {
       <header className="border-b border-[color:var(--color-border)] bg-[color:var(--color-surface)]">
         <div className="app-container py-6">
           <Card tone="subtle" padding="md" className="shadow-none">
-            <div className="flex flex-col gap-2 text-left">
-              <span className="text-sm font-medium uppercase tracking-wide text-[color:var(--color-primary-600)]">
-                Guided assessment
-              </span>
-              <h1 className="text-2xl font-semibold text-[color:var(--color-text-primary)]">
-                Social Security Disability Assessment
-              </h1>
-              <p className="text-sm text-[color:var(--color-text-secondary)]">
-                We’ll walk through a short set of questions to understand your eligibility.
-              </p>
+            <div className="flex flex-col gap-4 text-left md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-col gap-2">
+                <span className="text-sm font-medium uppercase tracking-wide text-[color:var(--color-primary-600)]">
+                  Guided assessment
+                </span>
+                <h1 className="text-2xl font-semibold text-[color:var(--color-text-primary)]">
+                  Social Security Disability Assessment
+                </h1>
+                <p className="text-sm text-[color:var(--color-text-secondary)]">
+                  We’ll walk through a short set of questions to understand your eligibility.
+                </p>
+              </div>
+              <Link
+                href="/"
+                className="text-sm font-semibold text-[color:var(--color-primary-600)] transition hover:text-[color:var(--color-primary-500)]"
+              >
+                ← Back to Home
+              </Link>
             </div>
           </Card>
         </div>

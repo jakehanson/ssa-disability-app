@@ -38,7 +38,9 @@ export default function AssessmentPage() {
       name: "You",
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    const updatedMessages = [...messages, userMessage];
+
+    setMessages(updatedMessages);
     setInputValue("");
     setIsLoading(true);
 
@@ -48,7 +50,7 @@ export default function AssessmentPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: trimmedInput }),
+        body: JSON.stringify({ messages: updatedMessages }),
       });
 
       if (!response.ok) {
